@@ -126,7 +126,7 @@ const updateUser = async (body, userId) => {
 const verifyCookie = (token) => {
   const tokenGotten = verifyToken(token);
   //TODO: check
-  //console.log(tokenGotten);
+  console.log(tokenGotten);
   return { status: 200, msg: "Correo verificado", data: tokenGotten };
 };
 
