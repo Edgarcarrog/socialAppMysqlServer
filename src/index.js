@@ -15,14 +15,17 @@ app.set("port", process.env.PORT || 4000);
 
 //middlewares
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method"
   );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header("Allow", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-app.use(cors({ origin: "http://localhost:3000" }));
+
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 //app.use(urlencoded({ extended: true }));
 
