@@ -14,7 +14,7 @@ const { urlencoded } = require("express");
 app.set("port", process.env.PORT || 4000);
 
 //middlewares
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "*" }));
 /* app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
