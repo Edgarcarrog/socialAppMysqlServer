@@ -14,7 +14,6 @@ const { urlencoded } = require("express");
 app.set("port", process.env.PORT || 4000);
 
 //middlewares
-app.use(cors({ origin: "*" }));
 /* app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -27,8 +26,8 @@ app.use(cors({ origin: "*" }));
   } 
   next();
 });*/
-
-// app.use(cors({ origin: "http://localhost:3000" }));
+const list = ["http://localhost:3000", "http://localhost:3001"];
+app.use(cors({ origin: list }));
 app.use(express.json());
 //app.use(urlencoded({ extended: true }));
 
