@@ -2,7 +2,7 @@ const promisePool = require("../database/pool");
 
 const createUser = (user) => {
   const sql =
-    "INSERT INTO users (userId, name, password, birthday, mail) VALUES (?,?,?,?,?)";
+    "INSERT INTO users SET userId=?, name=?, password=?, birthday=?, mail=?, email_verified=0";
   /*otra forma de hacer el query
      "INSERT INTO users SET name = ?, password = ?, avatar = ?, birthday = ?, mail = ?"*/
   return promisePool
