@@ -16,8 +16,8 @@ app.set("port", process.env.PORT || 4000);
 //middlewares
 app.use(express.json());
 var corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: "https://socialapp-ecg.netlify.app/",
+  optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
