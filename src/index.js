@@ -12,6 +12,8 @@ const { urlencoded } = require("express");
 
 //settings
 app.set("port", process.env.PORT || 4000);
+app.use(express.json());
+app.use(cors());
 
 //middlewares
 /* app.use((req, res, next) => {
@@ -25,10 +27,9 @@ app.set("port", process.env.PORT || 4000);
     return res.status(200).json({});
   } 
   next();
+  const list = ["http://localhost:3000", "http://localhost:3001"];
+  app.use(cors({ origin: list }));
 });*/
-const list = ["http://localhost:3000", "http://localhost:3001"];
-app.use(cors({ origin: list }));
-app.use(express.json());
 //app.use(urlencoded({ extended: true }));
 
 //routers
