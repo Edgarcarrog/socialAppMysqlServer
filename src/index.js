@@ -22,21 +22,6 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 /* app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested, Content-Type, Accept Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE");
-    return res.status(200).json({});
-  } 
-  next();
-  const list = ["http://localhost:3000", "http://localhost:3001"];
-  app.use(cors({ origin: list }));
-});*/
-//app.use(urlencoded({ extended: true }));
-app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
@@ -47,7 +32,7 @@ app.use((req, res, next) => {
     "OPTIONS, GET, POST, PATCH, DELETE"
   );
   next();
-});
+}); */
 
 //routers
 app.use("/api/v1", userRoutes);
