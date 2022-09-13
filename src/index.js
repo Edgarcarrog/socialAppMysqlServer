@@ -12,6 +12,8 @@ const { urlencoded } = require("express");
 
 //settings
 app.set("port", process.env.PORT || 4000);
+
+//middlewares
 app.use(express.json());
 var corsOptions = {
   origin: "*",
@@ -19,7 +21,6 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-//middlewares
 /* app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -35,6 +36,18 @@ app.use(cors(corsOptions));
   app.use(cors({ origin: list }));
 });*/
 //app.use(urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization ,AuthorizationRefresh, user"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PATCH, DELETE"
+  );
+  next();
+});
 
 //routers
 app.use("/api/v1", userRoutes);
