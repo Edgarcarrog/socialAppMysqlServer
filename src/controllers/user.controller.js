@@ -9,7 +9,7 @@ exports.authUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   const data = await userService.createUser(req.body);
-  res.status(data.status).json({ message: data.msg });
+  res.status(data.status).json({ message: data.msg, data: data });
 };
 
 exports.deleteUser = async (req, res) => {

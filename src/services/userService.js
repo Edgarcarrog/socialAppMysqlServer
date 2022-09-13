@@ -50,11 +50,11 @@ const createUser = (body) => {
       if (user) throw new Error("Ya existe una cuenta con este email");
       return userPool.createUser(userData);
     })
-    .then(() => {
+    .then((response) => {
       sendEmail(mail, "Confirma tu correo", template).then(() => {
         console.log("Correo de verificación enviado");
       });
-      return { status: 201, msg: "Cuenta creada" };
+      return { status: 201, msg: "Cuenta creada", data: response };
     })
     .catch((error) => {
       console.log(error);
@@ -110,8 +110,7 @@ const getUser = (token) => {
 
 const updateUser = async (body, userId) => {
   const { name, birthday } = body;
-  const sql =
-    "UPDATE users SET name = ?, birthday = ? WHERE userId = ?";
+  const sql = "UPDATE users SET name = ?, birthday = ? WHERE userId = ?";
   const data = [name, birthday, userId];
 
   try {
