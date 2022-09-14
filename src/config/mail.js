@@ -16,7 +16,7 @@ const sendEmail = async (email, subject, html) => {
       from: "ejemplo@mail.com",
       to: email,
       subject,
-      text: "Por favor confirma tu correo para activar tu cuenta",
+      text: "Confirma tu correo para activar tu cuenta",
       html,
     });
   } catch (error) {
