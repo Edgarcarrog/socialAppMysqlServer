@@ -39,7 +39,7 @@ const getPosts = (followerId) => {
     "SELECT p.Id, p.user, p.description, p.date, DATE_FORMAT(date, '%a %e %b %Y') AS date_public, (SELECT u.name FROM users u where u.userId = p.user) as name FROM posts p WHERE user in(SELECT followingId FROM follows WHERE followerId = ?) ORDER BY date DESC LIMIT 10";
 
   return promisePool
-    .query("SET @@lc_time_names = 'es_ES'")
+    .query("SET GLOBAL lc_time_names = 'es_MX'")
     .then(() => {
       return promisePool.query(sql, [followerId]);
     })
