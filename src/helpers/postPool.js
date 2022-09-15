@@ -66,9 +66,24 @@ const deletePost = (postId) => {
     });
 };
 
+const updatePost = (postData) => {
+  const sql = "UPDATE posts SET description = ? WHERE Id = ?";
+
+  return promisePool
+    .query(sql, postData)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+      return { status: 400, msg: error.message };
+    });
+};
+
 module.exports = {
   createPost,
   getMyPosts,
   getPosts,
   deletePost,
+  updatePost,
 };

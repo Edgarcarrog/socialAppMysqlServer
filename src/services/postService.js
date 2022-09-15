@@ -60,9 +60,26 @@ const deletePost = (postId) => {
     });
 };
 
+const updatePost = (body, postId) => {
+  const postData = [body.description, postId];
+
+  //Crea un usuario al registrase
+
+  return postPool
+    .updatePost(postData)
+    .then(() => {
+      return { status: 201, msg: "Post actualizado" };
+    })
+    .catch((error) => {
+      console.log(error);
+      return { status: 400, msg: error.message };
+    });
+};
+
 module.exports = {
   createPost,
   getMyPosts,
   getPosts,
   deletePost,
+  updatePost,
 };
