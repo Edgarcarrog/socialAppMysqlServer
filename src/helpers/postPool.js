@@ -36,14 +36,14 @@ const getMyPosts = (userId) => {
 
 const getPosts = (followerId) => {
   const sql =
-    "SELECT p.Id, p.user, p.description, p.date, (SELECT u.name FROM users u where u.userId = p.user) as name FROM posts p WHERE user in(SELECT followingId FROM follows WHERE followerId = ?) ORDER BY date DESC";
+    "SELECT p.Id, p.user, p.description, p.date, (SELECT u.name FROM users u where u.userId = p.user) as name FROM posts p WHERE user in(? UNION (SELECT followingId FROM follows WHERE followerId = ?)) ORDER BY date DESC";
 
   /* "SELECT p.Id, p.user, p.description, p.date, (SELECT u.name FROM users u where u.userId = p.user) as name FROM posts p WHERE user in(SELECT followingId FROM follows WHERE followerId = ?) ORDER BY date DESC"; */
 
   return promisePool
     .query("SET GLOBAL lc_time_names = 'es_MX'")
     .then(() => {
-      return promisePool.query(sql, [followerId]);
+      return promisePool.query(sql, [followerId, followerId]);
     })
     .then((response) => {
       return response;
